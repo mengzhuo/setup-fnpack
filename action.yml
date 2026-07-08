@@ -1,0 +1,16 @@
+name: 'Setup fnpack'
+description: 'Download and install fnpack CLI for building fnOS .fpk packages'
+inputs:
+  version:
+    description: 'fnpack version to install'
+    required: false
+    default: '1.2.3'
+outputs:
+  fnpack-path:
+    description: 'Path to the fnpack binary'
+runs:
+  using: 'node22'
+  main: 'dist/index.js'
+branding:
+  icon: 'package'
+  color: 'blue'
