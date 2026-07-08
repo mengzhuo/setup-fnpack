@@ -53,6 +53,7 @@ export function getCurrentVersion(content: string): string {
 async function run(): Promise<void> {
   try {
     const version = core.getInput('version', { required: true })
+    const dir = core.getInput('dir')
     const platform = getPlatform()
     const arch = getArch()
 
@@ -77,6 +78,7 @@ async function run(): Promise<void> {
     fs.chmodSync(binPath, 0o755)
     core.addPath(toolPath)
     core.setOutput('fnpack-path', binPath)
+    if (dir) core.exportVariable('FNPACK_DIR', dir)
     core.info(`fnpack ${version} installed: ${binPath}`)
   } catch (error) {
     if (error instanceof Error) core.setFailed(error.message)

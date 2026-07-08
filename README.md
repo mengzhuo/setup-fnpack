@@ -24,6 +24,7 @@ steps:
 | Input | Description | Default |
 |-------|-------------|---------|
 | `version` | fnpack version to install | `1.2.3` |
+| `dir` | Working directory for fnpack commands | `.` |
 
 ## Outputs
 

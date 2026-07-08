@@ -28290,6 +28290,7 @@ function getCurrentVersion(content) {
 async function run() {
     try {
         const version = core.getInput('version', { required: true });
+        const dir = core.getInput('dir');
         const platform = getPlatform();
         const arch = getArch();
         if (platform === 'windows' && arch === 'arm64') {
@@ -28311,6 +28312,8 @@ async function run() {
         fs.chmodSync(binPath, 0o755);
         core.addPath(toolPath);
         core.setOutput('fnpack-path', binPath);
+        if (dir)
+            core.exportVariable('FNPACK_DIR', dir);
         core.info(`fnpack ${version} installed: ${binPath}`);
     }
     catch (error) {

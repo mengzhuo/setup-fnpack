@@ -5,6 +5,10 @@ inputs:
     description: 'fnpack version to install'
     required: false
     default: '1.2.3'
+  dir:
+    description: 'Working directory for fnpack commands'
+    required: false
+    default: '.'
 outputs:
   fnpack-path:
     description: 'Path to the fnpack binary'
