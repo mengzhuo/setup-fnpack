@@ -9,7 +9,7 @@ outputs:
   fnpack-path:
     description: 'Path to the fnpack binary'
 runs:
-  using: 'node20'
+  using: 'node24'
   main: 'dist/index.js'
 branding:
   icon: 'package'
