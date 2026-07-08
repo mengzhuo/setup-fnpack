@@ -6,7 +6,7 @@ GitHub Action to install [fnpack](https://developer.fnnas.com/docs/cli/fnpack/) 
 
 ```yaml
 steps:
-  - uses: actions/checkout@v4
+  - uses: actions/checkout@v7
   - uses: mengzhuo/setup-fnpack
   - run: fnpack build
 ```
