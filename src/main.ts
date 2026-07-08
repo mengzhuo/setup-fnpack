@@ -2,6 +2,7 @@ import * as core from '@actions/core'
 import * as tc from '@actions/tool-cache'
 import * as os from 'os'
 import * as path from 'path'
+import * as fs from 'fs'
 
 const BASE_URL = 'https://static2.fnnas.com/fnpack'
 const DOCS_URL = 'https://developer.fnnas.com/docs/cli/fnpack/'
@@ -73,6 +74,7 @@ async function run(): Promise<void> {
     }
 
     const binPath = path.join(toolPath, `fnpack${ext}`)
+    fs.chmodSync(binPath, 0o755)
     core.addPath(toolPath)
     core.setOutput('fnpack-path', binPath)
     core.info(`fnpack ${version} installed: ${binPath}`)

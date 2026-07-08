@@ -28244,6 +28244,7 @@ const core = __importStar(__nccwpck_require__(7484));
 const tc = __importStar(__nccwpck_require__(3472));
 const os = __importStar(__nccwpck_require__(857));
 const path = __importStar(__nccwpck_require__(6928));
+const fs = __importStar(__nccwpck_require__(9896));
 const BASE_URL = 'https://static2.fnnas.com/fnpack';
 const DOCS_URL = 'https://developer.fnnas.com/docs/cli/fnpack/';
 function getPlatform(platform = os.platform()) {
@@ -28307,6 +28308,7 @@ async function run() {
             core.info(`fnpack ${version} found in cache`);
         }
         const binPath = path.join(toolPath, `fnpack${ext}`);
+        fs.chmodSync(binPath, 0o755);
         core.addPath(toolPath);
         core.setOutput('fnpack-path', binPath);
         core.info(`fnpack ${version} installed: ${binPath}`);
