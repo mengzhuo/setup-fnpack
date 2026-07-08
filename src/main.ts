@@ -64,14 +64,17 @@ async function run(): Promise<void> {
     const ext = platform === 'windows' ? '.exe' : ''
     const filename = buildFilename(version, platform, arch)
     const url = `${BASE_URL}/${filename}`
+    const cacheKey = `fnpack-${version}-${platform}-${arch}`
 
     let toolPath = tc.find('fnpack', version, arch)
     if (!toolPath) {
+      core.info(`Cache miss for ${cacheKey}`)
       core.info(`Downloading fnpack ${version} for ${platform}-${arch}...`)
       const downloadPath = await tc.downloadTool(url)
       toolPath = await tc.cacheFile(downloadPath, `fnpack${ext}`, 'fnpack', version, arch)
+      core.info(`Cached ${cacheKey} at ${toolPath}`)
     } else {
-      core.info(`fnpack ${version} found in cache`)
+      core.info(`Cache hit for ${cacheKey}: ${toolPath}`)
     }
 
     const binPath = path.join(toolPath, `fnpack${ext}`)
